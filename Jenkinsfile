@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Tests') {
             steps {
-                sh dotnet test ${workspace}/Core-DotnetCore.sln
+                sh "dotnet test ${workspace}/Core-DotnetCore.sln"
             }
         }
     }
