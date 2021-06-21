@@ -1,3 +1,4 @@
+  
 pipeline {
      agent any
 
@@ -8,10 +9,9 @@ pipeline {
     stages {
         stage('Tests') {
             steps {
-                sh "dotnet test ${workspace}/Core-DotnetCore.sln"
+                bat returnStatus: true, script: "npx dotnet test \"${workspace}/Core-DotnetCore.sln\" --logger \"nunit;LogFileName=results.xml\""
+                nunit failIfNoResults: true, testResultsPattern: '**/results.xml'
             }
         }
     }
 }
-
-
